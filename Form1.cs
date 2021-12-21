@@ -7,87 +7,93 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Courses.Particle;
+
+
 
 namespace Courses
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        List<Particle> particles = new List<Particle>();
+        List<Emitter> emitters = new List<Emitter>();
+        Emitter emitter;
+        
+        GravityPoint point2;
         public Form()
         {
             InitializeComponent();
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
-            
+
+            this.emitter = new Emitter 
+            {
+                Direction = 0,
+                Spreading = 10,
+                SpeedMin = 10,
+                SpeedMax = 10,
+                ColorFrom = Color.Gold,
+                ColorTo = Color.FromArgb(0, Color.Red),
+                ParticlesPerTick = 10,
+                X = picDisplay.Width / 2,
+                Y = picDisplay.Height / 2,
+            };
+
+            emitters.Add(this.emitter);
+
+            // гравитон          
+            point2 = new GravityPoint
+            {
+                X = picDisplay.Width / 2 - 100,
+                Y = picDisplay.Height / 2,
+            };
+
+                        
+            emitter.impactPoints.Add(point2);
         }
 
-        private void UpdateState()
-        {
-            foreach (var particle in particles)
-            {
-                particle.Life -= 1;
-                if (particle.Life < 0)
-                {
-                    particle.Life = 20 + Particle.rand.Next(100);
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-
-                    particle.Direction = Particle.rand.Next(360);
-                    particle.Speed = 1 + Particle.rand.Next(10);
-                    particle.Radius = 2 + Particle.rand.Next(10);
-                }
-                else
-                {
-                    var directionInRadians = particle.Direction / 180 * Math.PI;
-                    particle.X += (float)(particle.Speed * Math.Cos(directionInRadians));
-                    particle.Y -= (float)(particle.Speed * Math.Sin(directionInRadians));
-                }
-            }
-
-            for (var i = 0; i < 10; ++i)
-            {
-                if (particles.Count < 500) 
-                {
-                    var particle = new Particle();
-                    particle.X = MousePositionX;
-                    particle.Y = MousePositionY;
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break; //Ничего не генерируем если больше 500
-                }
-            }
-        }
-
-
-        private void Render(Graphics g)
-        {        
-            foreach (var particle in particles)
-            {
-                particle.Draw(g);
-            }
-        }
+       
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            UpdateState();
+            emitter.UpdateState();
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.White);
-                Render(g);
+                g.Clear(Color.Black);
+                emitter.Render(g);
             }
 
             picDisplay.Invalidate();
         }
 
-        private int MousePositionX = 0;
-        private int MousePositionY = 0;
+        
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {
-            MousePositionX = e.X;
-            MousePositionY = e.Y;
+            foreach (var emitter in emitters)
+            {
+                emitter.MousePositionX = e.X;
+                emitter.MousePositionY = e.Y;
+            }
+
+            point2.X = e.X;
+            point2.Y = e.Y;
+        }
+
+        private void tbDirection_Scroll(object sender, EventArgs e)
+        {
+            emitter.Direction = tbDirection.Value;
+            lblDirection.Text = $"{tbDirection.Value}°";
+        }        
+
+        private void tbGraviton2_Scroll(object sender, EventArgs e)
+        {
+            point2.Power = tbGraviton2.Value;
+        }
+
+        private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
+        {
+            emitter.Direction = tbDirection.Value;
+            lblDirection.Text = $"{tbDirection.Value}°";
         }
     }
 }
