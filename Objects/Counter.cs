@@ -13,6 +13,7 @@ namespace Courses
 
         public float Diameter = 60;
         public Color color = Color.Red;
+        public Color oldColor = Color.Black;
         public ushort Count = 0;
         public override void ImpactParticle(Particle particle)
         {
@@ -36,9 +37,15 @@ namespace Courses
         }
         public override void Render(Graphics g)
         {
-            var brush = new SolidBrush(Color.FromArgb(Convert.ToInt32(Count * 0.1f) <= 255 ? Convert.ToInt32(Count * 0.1f) : 255, 0, 0));
-            g.FillEllipse(brush, X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
-            g.DrawEllipse(new Pen(color, 2), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
+            Random random = new();
+            if ((float)(Count % 1080) / 1080 > 0.99)
+            {
+                oldColor = color;
+                color = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255));
+            }
+
+            g.FillEllipse(new SolidBrush(oldColor), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
+            g.FillPie(new SolidBrush(color), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter, -90, Count % 1080 / 3);            
 
             var stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;

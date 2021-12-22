@@ -130,10 +130,12 @@ namespace Courses
         {
             if (e.Button == MouseButtons.Left)
             {
+                Random random = new();
                 Counter counter = new Counter
                 {
                     X = e.X,
                     Y = e.Y,
+                    color = Color.FromArgb(random.Next(255), random.Next(255), random.Next(255)),
                 };
                 emitter.impactPoints.Add(counter);
                 UpdateCounters();

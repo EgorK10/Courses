@@ -121,9 +121,9 @@
             // btfromColor
             // 
             this.btfromColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btfromColor.Location = new System.Drawing.Point(510, 335);
+            this.btfromColor.Location = new System.Drawing.Point(513, 291);
             this.btfromColor.Name = "btfromColor";
-            this.btfromColor.Size = new System.Drawing.Size(141, 23);
+            this.btfromColor.Size = new System.Drawing.Size(141, 45);
             this.btfromColor.TabIndex = 7;
             this.btfromColor.Text = "Начальный цвет";
             this.btfromColor.UseVisualStyleBackColor = true;
@@ -132,9 +132,9 @@
             // bttoColor
             // 
             this.bttoColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bttoColor.Location = new System.Drawing.Point(510, 364);
+            this.bttoColor.Location = new System.Drawing.Point(513, 360);
             this.bttoColor.Name = "bttoColor";
-            this.bttoColor.Size = new System.Drawing.Size(141, 23);
+            this.bttoColor.Size = new System.Drawing.Size(141, 48);
             this.bttoColor.TabIndex = 8;
             this.bttoColor.Text = "Конечный цвет";
             this.bttoColor.UseVisualStyleBackColor = true;
