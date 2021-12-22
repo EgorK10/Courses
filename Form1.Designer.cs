@@ -54,6 +54,7 @@
             this.picDisplay.Size = new System.Drawing.Size(464, 426);
             this.picDisplay.TabIndex = 0;
             this.picDisplay.TabStop = false;
+            this.picDisplay.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseClick);
             this.picDisplay.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picDisplay_MouseMove);
             // 
             // timer1
@@ -112,7 +113,7 @@
             // btfromColor
             // 
             this.btfromColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btfromColor.Location = new System.Drawing.Point(482, 208);
+            this.btfromColor.Location = new System.Drawing.Point(510, 208);
             this.btfromColor.Name = "btfromColor";
             this.btfromColor.Size = new System.Drawing.Size(141, 23);
             this.btfromColor.TabIndex = 7;
@@ -123,7 +124,7 @@
             // bttoColor
             // 
             this.bttoColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bttoColor.Location = new System.Drawing.Point(482, 247);
+            this.bttoColor.Location = new System.Drawing.Point(510, 246);
             this.bttoColor.Name = "bttoColor";
             this.bttoColor.Size = new System.Drawing.Size(141, 23);
             this.bttoColor.TabIndex = 8;
@@ -134,7 +135,7 @@
             // btcolletorColor
             // 
             this.btcolletorColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btcolletorColor.Location = new System.Drawing.Point(482, 285);
+            this.btcolletorColor.Location = new System.Drawing.Point(510, 285);
             this.btcolletorColor.Name = "btcolletorColor";
             this.btcolletorColor.Size = new System.Drawing.Size(141, 23);
             this.btcolletorColor.TabIndex = 9;

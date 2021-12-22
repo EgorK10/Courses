@@ -17,6 +17,7 @@ namespace Courses
     {
         Emitter emitter;
         public Collector collector = new();
+        public Counter counter = new();
 
         public Form()
         {
@@ -50,7 +51,7 @@ namespace Courses
                 particle.ToColor = emitter.ColorTo;
             };
 
-            emitter.impactPoints.Add(collector);
+            emitter.impactPoints.Add(collector);            
         }
        
         private void timer1_Tick(object sender, EventArgs e)
@@ -61,7 +62,7 @@ namespace Courses
             {
                 g.Clear(Color.Black);
                 emitter.Render(g);
-                collector.Render(g);
+                collector.Render(g);               
             }
 
             picDisplay.Invalidate();
@@ -107,6 +108,13 @@ namespace Courses
         {
             colorDialog3.ShowDialog();
             collector.color = colorDialog3.Color;
+        }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            emitter.impactPoints.Add(counter);
+            counter.X = e.X;
+            counter.Y = e.Y;
         }
     }
 }

@@ -20,11 +20,12 @@ namespace Courses
         {
             if (Overlaps(particle))
             {
+                _count++;
                 if (particle is ParticleColorful particleColorful)
                 {
                     PaintParticle?.Invoke(particleColorful);
                 }
-                _count++;
+                
             }
             else
             {
