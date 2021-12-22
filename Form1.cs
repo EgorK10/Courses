@@ -38,6 +38,18 @@ namespace Courses
                 Y = picDisplay.Height / 2,
             };
 
+            collector.PaintParticle += (particle) =>
+            {
+                particle.FromColor = collector.color;
+                particle.ToColor = collector.color;
+            };
+
+            collector.ReturnColor += (particle) =>
+            {
+                particle.FromColor = emitter.ColorFrom;
+                particle.ToColor = emitter.ColorTo;
+            };
+
             emitter.impactPoints.Add(collector);
         }
        
@@ -73,15 +85,28 @@ namespace Courses
             emitter.Spreading = tbSpreading.Value;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btfromColor_Click(object sender, EventArgs e)
         {
             colorDialog1.ShowDialog();
-            
+            emitter.ColorFrom = colorDialog1.Color;
         }
 
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
-            
+            collector.Diameter += e.Delta * 0.1f;
+            collector.Diameter = MathF.Abs(collector.Diameter);
+        }
+
+        private void bttoColor_Click(object sender, EventArgs e)
+        {
+            colorDialog2.ShowDialog();
+            emitter.ColorTo = colorDialog2.Color;
+        }
+
+        private void btcolletorColor_Click(object sender, EventArgs e)
+        {
+            colorDialog3.ShowDialog();
+            collector.color = colorDialog3.Color;
         }
     }
 }

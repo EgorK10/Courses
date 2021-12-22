@@ -37,7 +37,11 @@
             this.tbSpreading = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btfromColor = new System.Windows.Forms.Button();
+            this.bttoColor = new System.Windows.Forms.Button();
+            this.btcolletorColor = new System.Windows.Forms.Button();
+            this.colorDialog2 = new System.Windows.Forms.ColorDialog();
+            this.colorDialog3 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
@@ -105,22 +109,47 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Разброс";
             // 
-            // button1
+            // btfromColor
             // 
-            this.button1.Location = new System.Drawing.Point(499, 208);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btfromColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btfromColor.Location = new System.Drawing.Point(482, 208);
+            this.btfromColor.Name = "btfromColor";
+            this.btfromColor.Size = new System.Drawing.Size(141, 23);
+            this.btfromColor.TabIndex = 7;
+            this.btfromColor.Text = "Начальный цвет";
+            this.btfromColor.UseVisualStyleBackColor = true;
+            this.btfromColor.Click += new System.EventHandler(this.btfromColor_Click);
+            // 
+            // bttoColor
+            // 
+            this.bttoColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.bttoColor.Location = new System.Drawing.Point(482, 247);
+            this.bttoColor.Name = "bttoColor";
+            this.bttoColor.Size = new System.Drawing.Size(141, 23);
+            this.bttoColor.TabIndex = 8;
+            this.bttoColor.Text = "Конечный цвет";
+            this.bttoColor.UseVisualStyleBackColor = true;
+            this.bttoColor.Click += new System.EventHandler(this.bttoColor_Click);
+            // 
+            // btcolletorColor
+            // 
+            this.btcolletorColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btcolletorColor.Location = new System.Drawing.Point(482, 285);
+            this.btcolletorColor.Name = "btcolletorColor";
+            this.btcolletorColor.Size = new System.Drawing.Size(141, 23);
+            this.btcolletorColor.TabIndex = 9;
+            this.btcolletorColor.Text = "Цвет радара";
+            this.btcolletorColor.UseVisualStyleBackColor = true;
+            this.btcolletorColor.Click += new System.EventHandler(this.btcolletorColor_Click);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btcolletorColor);
+            this.Controls.Add(this.bttoColor);
+            this.Controls.Add(this.btfromColor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbSpreading);
             this.Controls.Add(this.DirectionName);
@@ -147,6 +176,10 @@
         private System.Windows.Forms.TrackBar tbSpreading;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btfromColor;
+        private System.Windows.Forms.Button bttoColor;
+        private System.Windows.Forms.Button btcolletorColor;
+        private System.Windows.Forms.ColorDialog colorDialog2;
+        private System.Windows.Forms.ColorDialog colorDialog3;
     }
 }

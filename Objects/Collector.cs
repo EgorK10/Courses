@@ -9,8 +9,12 @@ namespace Courses
 {
     public class Collector : IImpactPoint
     {        
-        public int Diameter = 100;
+        public float Diameter = 100;
         private ushort _count = 0;
+        public Color color = Color.Blue;
+
+        public Action<ParticleColorful>? PaintParticle;
+        public Action<ParticleColorful>? ReturnColor;
 
         public override void ImpactParticle(Particle particle)
         {
@@ -18,15 +22,20 @@ namespace Courses
             {
                 if (particle is ParticleColorful particleColorful)
                 {
-                    particleColorful.FromColor = Color.Blue;
-                    particleColorful.ToColor = Color.Blue;
+                    PaintParticle?.Invoke(particleColorful);
                 }
-
                 _count++;
+            }
+            else
+            {
+                if (particle is ParticleColorful particleColorful)
+                {
+                    ReturnColor?.Invoke(particleColorful);
+                }
             }
         }
 
-        public bool Overlaps(Particle particle)
+        public override bool Overlaps(Particle particle)
         {
             float gX = X - particle.X;
             float gY = Y - particle.Y;
@@ -38,22 +47,20 @@ namespace Courses
 
         public override void Render(Graphics g)
         {
-            g.DrawEllipse(new Pen(Color.Blue), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
+            g.DrawEllipse(new Pen(color, 2), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
             
             var stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
+            
 
             if (_count > 0)
             {
                 g.DrawString(
                     $"{_count}",
                     new Font("Comic Sans MS", 14), // шрифт и размер
-                    new SolidBrush(Color.Red), // цвет шрифта
-                    X,
-                    Y,
-                    stringFormat
-                );
+                    new SolidBrush(Color.White), // цвет шрифта
+                    X, Y, stringFormat);
             }
 
             _count = 0;

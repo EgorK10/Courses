@@ -26,5 +26,7 @@ namespace Courses
                     10
                 );
         }
+
+        public abstract bool Overlaps(Particle particle);
     }
 }

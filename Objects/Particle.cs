@@ -73,6 +73,5 @@ namespace Courses
 
             b.Dispose();
         }
-
     }
 }

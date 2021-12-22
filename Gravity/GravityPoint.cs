@@ -26,6 +26,11 @@ namespace Courses
             }
         }
 
+        public override bool Overlaps(Particle particle)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Render(Graphics g)
         {
             /*

@@ -19,5 +19,10 @@ namespace Courses
             particle.SpeedX -= gX * Power / r2; 
             particle.SpeedY -= gY * Power / r2; 
         }
+
+        public override bool Overlaps(Particle particle)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
