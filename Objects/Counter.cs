@@ -36,7 +36,7 @@ namespace Courses
         }
         public override void Render(Graphics g)
         {
-            var brush = new SolidBrush(Color.FromArgb(Convert.ToInt32(Count * 0.1f), 0, 0));
+            var brush = new SolidBrush(Color.FromArgb(Convert.ToInt32(Count * 0.1f) <= 255 ? Convert.ToInt32(Count * 0.1f) : 255, 0, 0));
             g.FillEllipse(brush, X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
             g.DrawEllipse(new Pen(color, 2), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
 
