@@ -29,7 +29,7 @@ namespace Courses
             {
                 Direction = 0,
                 Spreading = 10,
-                SpeedMin = 10,
+                SpeedMin = 1,
                 SpeedMax = 10,
                 ColorFrom = Color.Red,
                 ColorTo = Color.FromArgb(0, Color.Purple),
@@ -150,6 +150,16 @@ namespace Courses
                 }
                 UpdateCounters();
             }
+        }
+
+        private void tbSpeed_Scroll(object sender, EventArgs e)
+        {
+            emitter.SpeedMax = tbSpeed.Value; 
+        }
+
+        private void tbLife_Scroll(object sender, EventArgs e)
+        {
+            emitter.LifeMax = tbLife.Value;
         }
     }
 }
