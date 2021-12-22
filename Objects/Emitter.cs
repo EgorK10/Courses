@@ -112,14 +112,14 @@ namespace Courses
         }
         public void Render(Graphics g)
         {
-            foreach (var particle in particles)
-            {
-                particle.Draw(g);
-            }
-
-            foreach (var point in impactPoints)
+            foreach (var point in impactPoints.ToList())
             {
                 point.Render(g);
+            }
+
+            foreach (var particle in particles.ToList())
+            {
+                particle.Draw(g);
             }
         }
     }

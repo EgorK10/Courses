@@ -39,7 +39,6 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.btfromColor = new System.Windows.Forms.Button();
             this.bttoColor = new System.Windows.Forms.Button();
-            this.btcolletorColor = new System.Windows.Forms.Button();
             this.colorDialog2 = new System.Windows.Forms.ColorDialog();
             this.colorDialog3 = new System.Windows.Forms.ColorDialog();
             this.label2 = new System.Windows.Forms.Label();
@@ -141,17 +140,6 @@
             this.bttoColor.UseVisualStyleBackColor = true;
             this.bttoColor.Click += new System.EventHandler(this.bttoColor_Click);
             // 
-            // btcolletorColor
-            // 
-            this.btcolletorColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btcolletorColor.Location = new System.Drawing.Point(510, 393);
-            this.btcolletorColor.Name = "btcolletorColor";
-            this.btcolletorColor.Size = new System.Drawing.Size(141, 23);
-            this.btcolletorColor.TabIndex = 9;
-            this.btcolletorColor.Text = "Цвет радара";
-            this.btcolletorColor.UseVisualStyleBackColor = true;
-            this.btcolletorColor.Click += new System.EventHandler(this.btcolletorColor_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -216,7 +204,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.tbSpeed);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btcolletorColor);
             this.Controls.Add(this.bttoColor);
             this.Controls.Add(this.btfromColor);
             this.Controls.Add(this.label1);
@@ -249,7 +236,6 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btfromColor;
         private System.Windows.Forms.Button bttoColor;
-        private System.Windows.Forms.Button btcolletorColor;
         private System.Windows.Forms.ColorDialog colorDialog2;
         private System.Windows.Forms.ColorDialog colorDialog3;
         private System.Windows.Forms.Label label2;

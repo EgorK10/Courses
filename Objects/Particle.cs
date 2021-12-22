@@ -52,6 +52,10 @@ namespace Courses
         public Color FromColor;
         public Color ToColor;
 
+        public bool Cross = false;
+
+        public static Bitmap cross = new(Properties.Resources.cross);
+
         public static Color MixColor(Color color1, Color color2, float k)
         {
             return Color.FromArgb(
@@ -64,14 +68,22 @@ namespace Courses
 
         public override void Draw(Graphics g)
         {
-            float k = Math.Min(1f, Life / 100);
+            if (!Cross)
+            {
+                float k = Math.Min(1f, Life / 100);
 
-            var color = MixColor(ToColor, FromColor, k);
-            var b = new SolidBrush(color);
+                var color = MixColor(ToColor, FromColor, k);
+                var b = new SolidBrush(color);
 
-            g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
+                g.FillEllipse(b, X - Radius, Y - Radius, Radius * 2, Radius * 2);
 
-            b.Dispose();
+                b.Dispose();
+            }
+            else
+            {
+                Bitmap particle = new(cross, new Size(Radius * 2, Radius * 2));
+                g.DrawImage(particle, new Point(Convert.ToInt32(X - Radius), Convert.ToInt32(Y - Radius)));
+            }
         }
     }
 }

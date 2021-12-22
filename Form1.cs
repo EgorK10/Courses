@@ -42,12 +42,14 @@ namespace Courses
             {
                 particle.FromColor = collector.color;
                 particle.ToColor = collector.color;
+                particle.Cross = true;
             };
 
             collector.ReturnColor += (particle) =>
             {
                 particle.FromColor = emitter.ColorFrom;
                 particle.ToColor = emitter.ColorTo;
+                particle.Cross = false;
             };
 
             emitter.impactPoints.Add(collector);
@@ -76,7 +78,6 @@ namespace Courses
             {
                 g.Clear(Color.Black);
                 emitter.Render(g);
-                collector.Render(g);               
             }
 
             picDisplay.Invalidate();
@@ -109,7 +110,8 @@ namespace Courses
         private void picDisplay_MouseWheel(object sender, MouseEventArgs e)
         {
             collector.Diameter += e.Delta * 0.1f;
-            collector.Diameter = MathF.Abs(collector.Diameter);
+            if (collector.Diameter < 25)
+                collector.Diameter = 25;
         }
 
         private void bttoColor_Click(object sender, EventArgs e)

@@ -48,7 +48,8 @@ namespace Courses
 
         public override void Render(Graphics g)
         {
-            g.DrawEllipse(new Pen(color, 2), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
+            g.FillEllipse(new SolidBrush(Color.GhostWhite), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
+            //g.DrawEllipse(new Pen(color, 3), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
             
             var stringFormat = new StringFormat();
             stringFormat.Alignment = StringAlignment.Center;
@@ -59,8 +60,8 @@ namespace Courses
             {
                 g.DrawString(
                     $"{_count}",
-                    new Font("Comic Sans MS", 14), // шрифт и размер
-                    new SolidBrush(Color.White), // цвет шрифта
+                    new Font("Comic Sans MS", 18), // шрифт и размер
+                    new SolidBrush(Color.Red), // цвет шрифта
                     X, Y, stringFormat);
             }
 
