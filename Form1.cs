@@ -17,8 +17,7 @@ namespace Courses
     {
         Emitter emitter;
         public Collector collector = new();
-        public Counter counter = new();
-
+       
         public Form()
         {
             InitializeComponent();
@@ -26,7 +25,7 @@ namespace Courses
 
             picDisplay.Image = new Bitmap(picDisplay.Width, picDisplay.Height);
 
-            emitter = new Emitter 
+            emitter = new Emitter
             {
                 Direction = 0,
                 Spreading = 10,
@@ -51,9 +50,24 @@ namespace Courses
                 particle.ToColor = emitter.ColorTo;
             };
 
-            emitter.impactPoints.Add(collector);            
+            emitter.impactPoints.Add(collector);
         }
-       
+
+        private void UpdateCounters()
+        {
+            foreach (var impactPoint in emitter.impactPoints.ToList())
+            {
+                if (impactPoint is Counter counter)
+                {
+                    counter.DestroyParticle += (particle) =>
+                    {
+                        emitter.particles.Remove(particle);
+                        counter.Count++;
+                    };
+                }
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             emitter.UpdateState();
@@ -112,9 +126,30 @@ namespace Courses
 
         private void picDisplay_MouseClick(object sender, MouseEventArgs e)
         {
-            emitter.impactPoints.Add(counter);
-            counter.X = e.X;
-            counter.Y = e.Y;
+            if (e.Button == MouseButtons.Left)
+            {
+                Counter counter = new Counter
+                {
+                    X = e.X,
+                    Y = e.Y,
+                };
+                emitter.impactPoints.Add(counter);
+                UpdateCounters();
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                foreach (var impactPoint in emitter.impactPoints.ToList())
+                {
+                    if (impactPoint is Counter counter)
+                    {
+                        if (counter.Diameter / 2 >= MathF.Sqrt(MathF.Pow(e.X - counter.X, 2) + MathF.Pow(e.Y - counter.Y, 2)))
+                        {
+                            emitter.impactPoints.Remove(counter);
+                        }
+                    }
+                }
+                UpdateCounters();
+            }
         }
     }
 }

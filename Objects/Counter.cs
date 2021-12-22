@@ -9,14 +9,19 @@ namespace Courses
 {
     public class Counter : IImpactPoint
     {
+        public Action<ParticleColorful>? DestroyParticle;
+
         public float Diameter = 60;
         public Color color = Color.Red;
-        private ushort _count = 0;
+        public ushort Count = 0;
         public override void ImpactParticle(Particle particle)
         {
-            if(Overlaps(particle))
+            if (Overlaps(particle))
             {
-
+                if (particle is ParticleColorful particleColorful)
+                {
+                    DestroyParticle?.Invoke(particleColorful);
+                }
             }
         }
 
@@ -31,6 +36,8 @@ namespace Courses
         }
         public override void Render(Graphics g)
         {
+            var brush = new SolidBrush(Color.FromArgb(Convert.ToInt32(Count * 0.1f), 0, 0));
+            g.FillEllipse(brush, X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
             g.DrawEllipse(new Pen(color, 2), X - Diameter / 2, Y - Diameter / 2, Diameter, Diameter);
 
             var stringFormat = new StringFormat();
@@ -38,10 +45,10 @@ namespace Courses
             stringFormat.LineAlignment = StringAlignment.Center;
 
 
-            if (_count > 0)
+            if (Count > 0)
             {
                 g.DrawString(
-                    $"{_count}",
+                    $"{Count}",
                     new Font("Comic Sans MS", 10), // шрифт и размер
                     new SolidBrush(Color.White), // цвет шрифта
                     X, Y, stringFormat);

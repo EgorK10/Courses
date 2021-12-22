@@ -84,7 +84,7 @@ namespace Courses
 
             }
 
-            foreach (var particle in particles)
+            foreach (var particle in particles.ToList())
             {
                 particle.Life -= 1; // уменьшаю здоровье
                                     
