@@ -25,8 +25,8 @@ namespace Courses
         public int LifeMax = 100;
         public int ParticlesCount = 500;
 
-        public Color ColorFrom = Color.Green;
-        public Color ColorTo = Color.FromArgb(0, Color.Purple);
+        public Color ColorFrom;
+        public Color ColorTo;
 
         public int ParticlesPerTick = 1;
 
@@ -34,17 +34,17 @@ namespace Courses
         public int MousePositionY;
 
         public float GravitationX = 0;
-        public float GravitationY = 0;
+        public float GravitationY = 1;
 
         public virtual void ResetParticle(Particle particle)
         {
             if (particle is ParticleColorful particleColor)
             {
-                particleColor.FromColor = Color.Green;
-                particleColor.ToColor = Color.FromArgb(0, Color.Purple);
+                particleColor.FromColor = ColorFrom;
+                particleColor.ToColor = ColorTo;
             }
             particle.Life = Particle.rand.Next(LifeMin, LifeMax);
-
+           
             particle.X = X;
             particle.Y = Y;
 
@@ -52,14 +52,15 @@ namespace Courses
                 + (double)Particle.rand.Next(Spreading)
                 - Spreading / 2;
 
+
             var speed = Particle.rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
-            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
-            particle.SpeedX = Particle.rand.Next(-2, 2);
+            particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);            
 
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
         }
+      
 
         public void UpdateState()
         {
@@ -74,6 +75,7 @@ namespace Courses
                     ResetParticle(particle); // добавили вызов ResetParticle
 
                     particles.Add(particle);
+
                 }
                 else
                 {
@@ -85,8 +87,8 @@ namespace Courses
             foreach (var particle in particles)
             {
                 particle.Life -= 1; // уменьшаю здоровье
-                                    // если здоровье кончилось
-                if (particle.Life < 0)
+                                    
+                if (particle.Life < 0) // если здоровье кончилось
                 {
                     ResetParticle(particle);
 
