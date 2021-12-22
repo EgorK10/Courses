@@ -35,7 +35,7 @@ namespace Courses
 
         public virtual void Draw(Graphics g)
         {
-            float k = Math.Min(1f, Life / 100);
+            float k = Math.Min(1f, MathF.Abs(Life / 100));
             int alpha = (int)(k * 255);
 
             var color = Color.FromArgb(alpha, Color.Black);
@@ -70,7 +70,7 @@ namespace Courses
         {
             if (!Cross)
             {
-                float k = Math.Min(1f, Life / 100);
+                float k = Math.Min(1f, MathF.Abs(Life / 100));
 
                 var color = MixColor(ToColor, FromColor, k);
                 var b = new SolidBrush(color);

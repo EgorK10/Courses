@@ -46,11 +46,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tbLife = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
+            this.lbCount = new System.Windows.Forms.Label();
+            this.tbParticles = new System.Windows.Forms.TrackBar();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLife)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbParticles)).BeginInit();
             this.SuspendLayout();
             // 
             // picDisplay
@@ -66,7 +70,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
-            this.timer1.Interval = 40;
+            this.timer1.Interval = 16;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // tbDirection
@@ -121,7 +125,7 @@
             // btfromColor
             // 
             this.btfromColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btfromColor.Location = new System.Drawing.Point(513, 291);
+            this.btfromColor.Location = new System.Drawing.Point(513, 339);
             this.btfromColor.Name = "btfromColor";
             this.btfromColor.Size = new System.Drawing.Size(141, 45);
             this.btfromColor.TabIndex = 7;
@@ -132,7 +136,7 @@
             // bttoColor
             // 
             this.bttoColor.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.bttoColor.Location = new System.Drawing.Point(513, 360);
+            this.bttoColor.Location = new System.Drawing.Point(513, 390);
             this.bttoColor.Name = "bttoColor";
             this.bttoColor.Size = new System.Drawing.Size(141, 48);
             this.bttoColor.TabIndex = 8;
@@ -144,7 +148,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Comic Sans MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(554, 9);
+            this.label2.Location = new System.Drawing.Point(560, -3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 30);
             this.label2.TabIndex = 10;
@@ -194,11 +198,44 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Жизни";
             // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Location = new System.Drawing.Point(503, 24);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(0, 15);
+            this.lbCount.TabIndex = 15;
+            // 
+            // tbParticles
+            // 
+            this.tbParticles.Location = new System.Drawing.Point(482, 291);
+            this.tbParticles.Maximum = 100;
+            this.tbParticles.Minimum = 1;
+            this.tbParticles.Name = "tbParticles";
+            this.tbParticles.Size = new System.Drawing.Size(169, 45);
+            this.tbParticles.TabIndex = 16;
+            this.tbParticles.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.tbParticles.Value = 1;
+            this.tbParticles.Scroll += new System.EventHandler(this.tbParticles_Scroll);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Comic Sans MS", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(482, 271);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(153, 17);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Количество частиц в тик";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 450);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.tbParticles);
+            this.Controls.Add(this.lbCount);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tbLife);
             this.Controls.Add(this.label3);
@@ -219,6 +256,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLife)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbParticles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,5 +281,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar tbLife;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lbCount;
+        private System.Windows.Forms.TrackBar tbParticles;
+        private System.Windows.Forms.Label label5;
     }
 }

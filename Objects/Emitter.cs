@@ -34,7 +34,7 @@ namespace Courses
         public int MousePositionY;
 
         public float GravitationX = 0;
-        public float GravitationY = 1;
+        public float GravitationY = 0.5f;
 
         public virtual void ResetParticle(Particle particle)
         {
@@ -43,73 +43,74 @@ namespace Courses
                 particleColor.FromColor = ColorFrom;
                 particleColor.ToColor = ColorTo;
             }
-            particle.Life = Particle.rand.Next(LifeMin, LifeMax);
+            particle.Life = rand.Next(LifeMin, LifeMax);
            
             particle.X = X;
             particle.Y = Y;
 
             var direction = Direction
-                + (double)Particle.rand.Next(Spreading)
+                + (double)rand.Next(Spreading)
                 - Spreading / 2;
 
 
-            var speed = Particle.rand.Next(SpeedMin, SpeedMax);
+            var speed = rand.Next(SpeedMin, SpeedMax);
 
             particle.SpeedX = (float)(Math.Cos(direction / 180 * Math.PI) * speed);
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);            
 
-            particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
+            particle.Radius = rand.Next(RadiusMin, RadiusMax);
         }
-      
-
+        
+        //метод обновления состояния системы
         public void UpdateState()
         {
-            for (var i = 0; i < 10; ++i)
-            {
-                if (particles.Count < ParticlesCount)
-                {
-                    var particle = new ParticleColorful();
-                    particle.FromColor = Color.White;
-                    particle.ToColor = Color.FromArgb(0, Color.Black);
-
-                    ResetParticle(particle); // добавили вызов ResetParticle
-
-                    particles.Add(particle);
-
-                }
-                else
-                {
-                    break;
-                }
-
-            }
+            int particlesToCreate = ParticlesPerTick;
 
             foreach (var particle in particles.ToList())
             {
-                particle.Life -= 1; // уменьшаю здоровье
-                                    
-                if (particle.Life < 0) // если здоровье кончилось
-                {
-                    ResetParticle(particle);
 
+                if (particle.Life <= 0)
+                {
+                    if (particlesToCreate > 0)
+                        particles.Remove(particle);
                 }
                 else
                 {
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
 
+                    particle.Life--;
                     foreach (var point in impactPoints)
                     {
                         point.ImpactParticle(particle);
                     }
 
-
                     particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;                   
+                    particle.SpeedY += GravitationY;
                 }
+            }
 
+            while (particlesToCreate >= 1)
+            {
+                particlesToCreate--;
+                var particle = CreateParticle();
+                ResetParticle(particle);
+                particles.Add(particle);
             }
         }
+
+        public virtual Particle CreateParticle()
+        {
+            var particle = new ParticleColorful
+            {
+                FromColor = ColorFrom,
+                ToColor = ColorTo
+            };
+
+            ResetParticle(particle);
+            return particle;
+        }
+
         public void Render(Graphics g)
         {
             foreach (var point in impactPoints.ToList())

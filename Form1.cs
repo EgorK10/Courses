@@ -80,6 +80,7 @@ namespace Courses
                 emitter.Render(g);
             }
 
+            lbCount.Text = $"Общее количество частиц: {emitter.particles.Count}";
             picDisplay.Invalidate();
         }
                 
@@ -164,6 +165,11 @@ namespace Courses
         private void tbLife_Scroll(object sender, EventArgs e)
         {
             emitter.LifeMax = tbLife.Value;
+        }
+
+        private void tbParticles_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbParticles.Value;
         }
     }
 }
